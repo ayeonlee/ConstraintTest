@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <declare-styleable name="RoundConstraintLayout">
+        <attr name="rcl_radius" format="dimension" />
+        <attr name="rcl_shadow_y" format="dimension" />
+        <attr name="rcl_shadow_blur" format="dimension" />
+        <attr name="rcl_shadow_color" format="color" />
+        <attr name="rcl_shadow_drawable" format="reference" />
+    </declare-styleable>
+</resources>

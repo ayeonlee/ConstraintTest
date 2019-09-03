@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    
+    <kr.yeon.test.constraint.RoundConstraintLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/cl1"
+        app:rcl_radius="6dp"
+        app:rcl_shadow_blur="4dp"
+        app:rcl_shadow_y="2dp"
+        app:rcl_shadow_color="#88000000"
+        android:layout_marginLeft="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="50dp">
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@android:color/background_dark"
+            tools:layout_editor_absoluteY="243dp"
+            tools:layout_editor_absoluteX="0dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textColor="@android:color/white"
+            android:textSize="14dp"
+            android:text="LIVE"/>
+    </kr.yeon.test.constraint.RoundConstraintLayout>
+
+    <View
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cl1"
+        app:layout_constraintLeft_toLeftOf="@+id/cl1"
+        android:background="#33FF0000"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/cl1"
+        app:layout_constraintLeft_toLeftOf="@+id/cl1"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="30dp"
+        android:textSize="14dp"
+        android:text="LIVE"
+        android:layout_marginStart="30dp" />
+
+    <kr.yeon.test.constraint.RoundConstraintLayout2
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/cl2"
+        app:rcl_radius="6dp"
+        app:rcl_shadow_blur="4dp"
+        app:rcl_shadow_y="2dp"
+        app:rcl_shadow_color="#88000000"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="50dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent" />
+
+        <VideoView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/video"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textColor="@android:color/white"
+            android:textSize="14dp"
+            android:text="LIVE"/>
+    </kr.yeon.test.constraint.RoundConstraintLayout2>
+
+    <kr.yeon.test.constraint.RoundConstraintLayout3
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintTop_toBottomOf="@+id/cl2"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/cl3"
+        app:rcl_radius="3dp"
+app:rcl_shadow_drawable="@drawable/shadow_6"
+        android:layout_marginRight="50dp"
+        android:layout_marginEnd="50dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent" />
+
+        <VideoView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/video3"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textColor="@android:color/white"
+            android:textSize="14dp"
+            android:text="LIVE"/>
+    </kr.yeon.test.constraint.RoundConstraintLayout3>
+
+    <LinearLayout
+        android:id="@+id/vvv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cl3"
+        app:layout_constraintLeft_toLeftOf="@+id/cl3"
+        android:background="@drawable/shadow_6"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="abc"/>
+    </LinearLayout>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="10dp"
+        android:background="#FF00FF"
+        app:layout_constraintLeft_toLeftOf="@id/cl3"
+        app:layout_constraintTop_toTopOf="@id/cl3"
+        android:layout_marginLeft="20px"/>
+    <VideoView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/video2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+</android.support.constraint.ConstraintLayout>
