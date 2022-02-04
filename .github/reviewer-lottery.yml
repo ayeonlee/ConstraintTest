@@ -1,0 +1,6 @@
+groups:
+  - name: android-test
+    reviewers: 1
+    usernames: # github usernames of the reviewers
+      - ayeon-lee
+      - ayeonlee
