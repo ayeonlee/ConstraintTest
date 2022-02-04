@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             NinePatchDrawable nd = (NinePatchDrawable) d;
             Rect p = new Rect();
             boolean ppp = nd.getPadding(p);
-            Log.d("TEST", "V:"+ppp+"/"+p.toShortString());
+            Log.d("TEST", "V:" + ppp + "/" + p.toShortString());
         }
     }
 }
