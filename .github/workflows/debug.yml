@@ -20,7 +20,15 @@ jobs:
         run: |
           echo ${{ github.event.tag.name }}
           echo ${{ github.ref }}
+          echo ${{ github.event.base_ref }}
           echo ${{ github.event }}
+
+      - name: Get Branch
+        run: |
+          raw=$(git branch -r --contains ${{ github.ref }})
+          branch=${raw/origin\/}
+          echo ::set-env name=BRANCH::$branch
+      - run: echo ${{ env.BRANCH }}
 
       - name: set up JDK 11
         uses: actions/setup-java@v3
