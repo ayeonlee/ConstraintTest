@@ -8,6 +8,7 @@ on:
 jobs:
   distribute_debug:
     runs-on: ubuntu-latest
+    run: echo ${{ github.event.tag.name }} ${{ github.ref }}
     if: github.ref == 'refs/heads/master'
 
     steps:
