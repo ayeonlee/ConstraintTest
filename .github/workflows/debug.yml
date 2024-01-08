@@ -26,7 +26,8 @@ jobs:
 
   distribute_debug:
     runs-on: ubuntu-latest
-#    if: github.ref == 'refs/heads/master'
+    needs: check # Wait for check step to finish
+    if: ${{ needs.check.outputs.branch == 'master' }} # only run if branch is master
 
     steps:
       - uses: actions/checkout@v2
@@ -36,10 +37,8 @@ jobs:
 
       - name: print
         run: |
-          echo ${{ github.event.tag.name }}
           echo ${{ github.ref }}
-          echo ${{ github.event.base_ref }}
-          echo ${{ github.event }}
+          echo ${{ github.ref_name }}
 
 #      - name: Get Branch
 #        run: |
@@ -75,7 +74,7 @@ jobs:
       - name: set up release notes
         run: |
           cat > release_note.txt
-          echo ${{ github.event.tag.name }} > release_note.txt
+          echo "(dev) 스토어 배포 버전 v ${{  github.ref_name }}" > release_note.txt
 
       - name: set up distribution options
         run: |
