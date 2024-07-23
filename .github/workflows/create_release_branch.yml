@@ -1,0 +1,40 @@
+name: Create Release/Hotfix Branch
+on:
+  workflow_dispatch:
+    inputs:
+      versionName:
+        description: 'Name of version (ex 9.5.0)'
+        type: string
+        required: true
+      releaseOrHotfix:
+        description: 'Release Or Hotfix'
+        type: choice
+        required: true
+        options:
+          - release
+          - hotfix
+
+env:
+  dispatched_name: '${{github.event.inputs.releaseOrHotfix}}/${{github.event.inputs.versionName}}'
+
+jobs:
+  createReleaseOrHotfix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print branch name.
+        run: |
+          echo $dispatched_name
+      - name: Checkout develop branch for release
+        if: ${{ startsWith(env.dispatched_name, 'release') }}
+        uses: actions/checkout@v3
+        with:
+          ref: develop
+      - name: Checkout master branch for hotfix
+        if: ${{ startsWith(env.dispatched_name, 'hotfix') }}
+        uses: actions/checkout@v3
+        with:
+          ref: master
+      - name: Create branch
+        run: git checkout -b ${{ env.dispatched_name }}
+      - name: Push new branch
+        run: git push origin ${{ env.dispatched_name }}
