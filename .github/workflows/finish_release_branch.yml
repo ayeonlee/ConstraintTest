@@ -24,7 +24,7 @@ jobs:
         run: echo "version_name=1.0.0" >> $GITHUB_ENV
 
       - name: gitflow-workflow-action release workflows
-        uses: hoangvvo/gitflow-workflow-action@<TAG>
+        uses: hoangvvo/gitflow-workflow-action@0.3.8
         with:
           develop_branch: "develop"
           main_branch: "master"
