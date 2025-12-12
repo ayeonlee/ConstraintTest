@@ -5,13 +5,15 @@ name: Finish Release Branch
 on:
   pull_request:
     types:
-      - merged
+      - closed
     branches:
-      - master  # master로 머지되는 경우만
+      - 'master'  # master로 머지되는 경우만
 
 jobs:
   release_workflow:
     runs-on: ubuntu-latest
+    # PR이 머지되었고, release/** 브랜치인 경우만 실행
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/')
     steps:
       - uses: actions/checkout@v4
         with:
