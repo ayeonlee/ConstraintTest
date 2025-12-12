@@ -29,15 +29,15 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: develop
-          # fetch-depth: 0
-          # token: ${{ secrets.ACTIONS_TOKEN }}
+          fetch-depth: 0
+          token: ${{ secrets.ACTIONS_TOKEN }}
       - name: Checkout master branch for hotfix
         if: ${{ startsWith(env.dispatched_name, 'hotfix') }}
         uses: actions/checkout@v3
         with:
           ref: master
-          # fetch-depth: 0
-          # token: ${{ secrets.ACTIONS_TOKEN }}
+          fetch-depth: 0
+          token: ${{ secrets.ACTIONS_TOKEN }}
       - name: Create branch
         run: git checkout -b ${{ env.dispatched_name }}
       - name: Push new branch
