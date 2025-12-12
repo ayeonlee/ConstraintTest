@@ -1,0 +1,39 @@
+# release push 시
+# 현재 버전 정보 갱신 후 jenkins productRelease apk 공유
+name: distribute jenkins on push(release)
+
+on:
+  push:
+    branches:
+      - 'release/**'
+
+jobs:
+  distribute_release:
+    runs-on: ubuntu-latest
+    steps:
+      # repo 받아오기
+      # 현재 모든 브랜치 및 tag들을 가져오도록 설정되어 있어, 성능 개선이 필요함
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # 버전 정보 업데이트(단, 현재 (브랜치명에서 뽑은)버전이랑 환경 변수의 버전이 다른 경우에만)
+#      - name: update version
+#        run: |
+#          currentBranch=$(git branch --show-current)
+#          git pull origin ${currentBranch}
+#
+#          git config --global user.name "actions"
+#          git config --global user.email "actions@test.com"
+#
+#          git add -A
+#          git commit -m "update version"
+#          git push
+      - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+        run: |
+          currentBranch=$(git branch --show-current)
+          gh pr create --base master \
+            --head ${currentBranch} \
+            --title "[정기배포] ${currentBranch}" \
+            --body "This PR was automatically created by GitHub Actions."
