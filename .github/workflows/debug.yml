@@ -6,15 +6,47 @@ on:
       - '[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.check_step.outputs.branch }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Get current branch
+        id: check_step
+        run: |
+          raw=$(git branch -r --contains ${{ github.ref }})
+          branch=${raw##*/}
+          echo "branch=$branch" >> $GITHUB_OUTPUT
+          echo "Branch is $branch."
+
   distribute_debug:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    needs: check # Wait for check step to finish
+    if: ${{ needs.check.outputs.branch == 'master' }} # only run if branch is master
 
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: '3.1'
+
+      - name: print
+        run: |
+          echo ${{ github.ref }}
+          echo ${{ github.ref_name }}
+          echo ${{ needs.check.outputs.branch }}
+
+#      - name: Get Branch
+#        run: |
+#          raw=$(git branch -r --contains ${{ github.ref }})
+#          branch=${raw/origin\/}
+#          echo ::set-env name=BRANCH::$branch
+#      - run: echo ${{ env.BRANCH }}
 
       - name: set up JDK 11
         uses: actions/setup-java@v3
@@ -43,7 +75,7 @@ jobs:
       - name: set up release notes
         run: |
           cat > release_note.txt
-          echo ${{ github.event.tag.name }} > release_note.txt
+          echo "(dev) 스토어 배포 버전 v ${{  github.ref_name }}" > release_note.txt
 
       - name: set up distribution options
         run: |
