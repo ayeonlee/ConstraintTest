@@ -12,8 +12,6 @@ on:
 jobs:
   release_workflow:
     runs-on: ubuntu-latest
-    # release/** 브랜치가 머지된 경우만 실행
-    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/')
     steps:
       - uses: actions/checkout@v4
         with:
